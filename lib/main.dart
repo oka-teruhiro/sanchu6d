@@ -32,7 +32,7 @@ class _ShakeAndInvertCounterState extends State<ShakeAndInvertCounter> {
   @override
   void initState() {
     super.initState();
-    _startListening();
+    //_startListening();
   }
 
   void _startListening() {
@@ -48,13 +48,16 @@ class _ShakeAndInvertCounterState extends State<ShakeAndInvertCounter> {
       }
     });
 
-    accelerometerEventStream().listen((AccelerometerEvent event) {
-      if (_isInverted && event.z < -9.8) {
+    accelerometerEventStream().listen(
+            (AccelerometerEvent event) {
+      if (_isInverted && event.z < -7) {
+
         setState(() {
           _counter++;
         });
-      }
-    });
+      } //
+    }
+    );
   }
 
   @override
@@ -64,9 +67,24 @@ class _ShakeAndInvertCounterState extends State<ShakeAndInvertCounter> {
         title: const Text('Shake and Invert Counter'),
       ),
       body: Center(
-        child: Text(
-          'Counter: $_counter',
-          style: const TextStyle(fontSize: 40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Counter: $_counter',
+              style: const TextStyle(fontSize: 40),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _startListening();
+              },
+              child: Text(
+                'おみくじ開始',
+                style: TextStyle(fontSize: 30),
+              ),
+            )
+          ],
         ),
       ),
     );
