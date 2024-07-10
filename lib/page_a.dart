@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class PageA extends StatelessWidget {
   final int omikujiNo;
+
   const PageA({
     super.key,
     required this.omikujiNo,
@@ -13,13 +14,21 @@ class PageA extends StatelessWidget {
       appBar: AppBar(
         title: Text('おみくじNoは、$omikujiNo です'),
       ),
-      body: const Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('天からのメッセージは'),
-          Text('　愛は与えて忘れなさい。')
-        ],
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('天からのメッセージは'),
+            const Text(
+              '　愛は与えて忘れなさい。',
+              style: TextStyle(
+                fontSize: 25,
+              ),
+            ),
+            Text('$omikujiNo'),
+          ],
+        ),
       ),
     );
   }
